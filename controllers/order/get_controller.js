@@ -8,10 +8,10 @@ check = new Check ();
 
 module.exports = class GetOrder {
     getAllOrder(req, res, next) {
-        const token = req.header['token'];
+        const token = req.headers['token'];
         if(check.checkNull(token) === true) {
             res.json({
-                err: 'please input token'
+                err: 'please input token!'
             })
         }
         else if (check.checkNull(token) === false){
@@ -24,17 +24,17 @@ module.exports = class GetOrder {
                         }
                     })
                 }
-                else (
-                    orderData.then(result => {
+                else {
+                    orderData().then(result => {
                         res.json({
                             result: result
-                        }, (err) => {
-                            res.json({
-                                result: err
-                            })
+                        })
+                    }, (err) => {
+                        res.json({
+                            result: err
                         })
                     })
-                )
+                }
             })
         }
     }

@@ -8,10 +8,11 @@ check = new Check();
 module.exports = class ModifyOrder{
     // whole order 
     postOrderAllProduct(req, res, next) {
+        // console.log('request received:', req.body)
         const token = req.headers['token']
-        if(check.checkNull(token) === true){
+        if (check.checkNull(token) === true) {
             res.json({
-                err: 'please input token'
+                err: "請輸入token！"
             })
         }
         else if(check.checkNull(token) === false) {
@@ -23,7 +24,7 @@ module.exports = class ModifyOrder{
                         err: 'please re-login'
                     }
                 })
-                } else if(tokenResult === true){
+                } else{
                     const memberID = tokenResult;
                     const orderList = {
                         memberID: memberID,
@@ -46,7 +47,6 @@ module.exports = class ModifyOrder{
         }
     }
 }
-
 const onTime = () => {
     const date = new Date();
     const mm = date.getMonth() + 1;

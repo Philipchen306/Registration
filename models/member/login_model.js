@@ -4,7 +4,7 @@ module.exports = function memberLogin(memberData) {
     let result = {}
     return new Promise((resolve, reject) => {
         // find 
-        db.query('SELECT * FROM member_info WHERE email = ? AND password = ?', 
+        db.query('SELECT * FROM member WHERE email = ? AND password = ?', 
             [memberData.email, memberData.password], function (err, rows){
                 if (err){
                     result.status = 'fail!!';
